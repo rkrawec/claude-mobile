@@ -1,0 +1,245 @@
+:root {
+  --bg: #f7f7f8;
+  --surface: #ffffff;
+  --text: #14161a;
+  --muted: #7a8090;
+  --line: #e5e7eb;
+  --accent: #4f46e5;
+  --danger: #d64545;
+  --radius: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1115;
+    --surface: #181b21;
+    --text: #eceef2;
+    --muted: #8b91a0;
+    --line: #272b33;
+    --accent: #8b85ff;
+    --danger: #ff6b6b;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  padding:
+    env(safe-area-inset-top)
+    env(safe-area-inset-right)
+    env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+  background: var(--bg);
+  color: var(--text);
+  font: 400 17px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  overscroll-behavior-y: contain;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, input {
+  font: inherit;
+  color: inherit;
+}
+
+/* ---------- header ---------- */
+
+.header {
+  padding: 20px 20px 8px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* ---------- composer ---------- */
+
+.composer {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--bg);
+}
+
+.composer-input {
+  flex: 1;
+  min-width: 0;
+  /* 16px minimum stops iOS from zooming the page on focus */
+  font-size: 17px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.composer-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.composer-add {
+  flex: none;
+  padding: 12px 18px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.composer-add:active { opacity: 0.75; }
+
+/* ---------- filters ---------- */
+
+.filters {
+  display: flex;
+  gap: 6px;
+  padding: 0 16px 12px;
+}
+
+.filter {
+  flex: 1;
+  padding: 8px 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.filter[aria-selected="true"] {
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ---------- list ---------- */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 8px 12px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* Tapping anywhere on the label toggles done. */
+.item-toggle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.box {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--muted);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.box::after {
+  content: "";
+  width: 12px;
+  height: 6px;
+  border-left: 2.5px solid #fff;
+  border-bottom: 2.5px solid #fff;
+  transform: rotate(-45deg) translate(1px, -1px);
+  opacity: 0;
+}
+
+.item.done .box {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.item.done .box::after { opacity: 1; }
+
+.title {
+  overflow-wrap: anywhere;
+}
+
+.item.done .title {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.delete {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 24px;
+  line-height: 1;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.delete:active { color: var(--danger); }
+
+/* ---------- empty + footer ---------- */
+
+.empty {
+  margin: 48px 20px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.footer {
+  padding: 20px 16px 32px;
+  text-align: center;
+}
+
+.clear {
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 15px;
+  text-decoration: underline;
+  cursor: pointer;
+}
