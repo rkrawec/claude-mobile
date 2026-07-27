@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Tasks",
+    "path": "./tasks/",
+    "description": "A bare-bones offline task tracker.",
+    "emoji": "✓"
+  }
+]

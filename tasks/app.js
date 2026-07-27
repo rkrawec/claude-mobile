@@ -1,5 +1,7 @@
 'use strict';
 
+/* localStorage is shared across the whole github.io origin, so this key must be
+   prefixed with the app's folder name to avoid colliding with sibling apps. */
 const STORAGE_KEY = 'tasks.v1';
 
 /** @type {{id: string, title: string, done: boolean, createdAt: number}[]} */
