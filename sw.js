@@ -1,57 +1,28 @@
-/* Bump CACHE when you change any of the files below, so phones pick up
-   the new version instead of serving the old one forever. */
-const CACHE = 'tasks-v1';
+/* Tombstone service worker.
+ *
+ * The first version of this site lived at the root and registered a service
+ * worker here, with a scope covering everything under /claude-mobile/. That
+ * worker cached the old task app and would keep serving it at the root URL,
+ * shadowing the launcher. Phones already carrying it fetch this file on their
+ * next visit, install this version instead, and it erases itself.
+ *
+ * Deletes only the one old cache by exact name — caches are shared across the
+ * whole origin, so a prefix match would take out the live apps' caches too.
+ */
 
-const ASSETS = [
-  './',
-  './index.html',
-  './styles.css',
-  './app.js',
-  './manifest.webmanifest',
-  './icons/icon-180.png',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/icon-maskable-512.png',
-];
+const OLD_CACHE = 'tasks-v1';
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE)
-      .then((cache) => cache.addAll(ASSETS))
-      .then(() => self.skipWaiting())
-  );
-});
+self.addEventListener('install', () => self.skipWaiting());
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys()
-      .then((keys) => Promise.all(
-        keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))
-      ))
-      .then(() => self.clients.claim())
-  );
-});
+  event.waitUntil((async () => {
+    await caches.delete(OLD_CACHE);
+    await self.registration.unregister();
 
-/* Stale-while-revalidate: serve from cache instantly (so it opens offline),
-   refresh the cache in the background, and the next launch shows any update. */
-self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  if (request.method !== 'GET') return;
-  if (new URL(request.url).origin !== self.location.origin) return;
-
-  event.respondWith(
-    caches.match(request).then((cached) => {
-      const network = fetch(request)
-        .then((response) => {
-          if (response && response.ok) {
-            const copy = response.clone();
-            caches.open(CACHE).then((cache) => cache.put(request, copy));
-          }
-          return response;
-        })
-        .catch(() => cached);
-
-      return cached || network;
-    })
-  );
+    // Reload any open windows so they drop this worker and fetch the live site.
+    const clients = await self.clients.matchAll({ type: 'window' });
+    for (const client of clients) {
+      client.navigate(client.url).catch(() => {});
+    }
+  })());
 });

@@ -1,75 +1,46 @@
-# Tasks
+# claude-mobile
 
-A bare-bones task tracker that installs on an iPhone home screen. No accounts,
-no server, no build step — plain HTML/CSS/JS. Tasks are stored in `localStorage`
-on the phone itself, so they never leave the device.
+Small web apps I build from my phone, hosted free on GitHub Pages and installed
+to the iPhone home screen. No build step, no dependencies, no server.
 
-## What it does
+**Live: <https://rkrawec.github.io/claude-mobile/>**
 
-- Add a task, tap it to mark done, tap `×` to delete
-- Filter by All / Active / Done, and clear completed in one tap
-- Remembers everything between launches
-- Works with no signal (service worker caches the app)
-- Follows the phone's light/dark setting
-- Launches full-screen with its own icon, no Safari chrome
+| App | What it is |
+| --- | --- |
+| [Tasks](https://rkrawec.github.io/claude-mobile/tasks/) | A bare-bones offline task tracker |
 
-## Get it on your iPhone
+## Installing an app on your iPhone
 
-**1. Make the repo public.** GitHub Pages only works on private repos with a
-paid plan, so on a free account this step is required. On github.com →
-`rkrawec/claude-mobile` → **Settings** → scroll to the bottom → **Change
-visibility** → **Change to public**.
+Open the app's URL **in Safari** (Chrome on iOS cannot install home-screen
+apps), tap **Share** → **Add to Home Screen** → **Add**. Launch it from that
+icon, not from Safari, and it runs full-screen as its own app with its own
+storage. The launcher page itself can be installed the same way.
 
-**2. Turn on GitHub Pages.** Still in **Settings**, click **Pages** in the left
-sidebar. Under *Build and deployment* → *Source*, choose **Deploy from a
-branch**. Set the branch to `claude/iphone-task-tracker-app-84qdpp` and the
-folder to `/ (root)`. Click **Save**.
+## Adding a new app
 
-**3. Wait about a minute,** then reload the Pages settings screen. It will show
-the live URL:
+Everything is already provisioned — the repo is public and Pages is on — so new
+apps need no setup at all:
 
-```
-https://rkrawec.github.io/claude-mobile/
-```
+1. Ask Claude for the app. It creates `/<name>/` and registers it in `apps.json`.
+2. Merge the PR from the GitHub mobile app.
+3. About a minute later it is live at
+   `https://rkrawec.github.io/claude-mobile/<name>/`.
 
-**4. Open that URL in Safari on your iPhone.** It must be Safari — Chrome on iOS
-cannot install home-screen apps.
+See [CLAUDE.md](./CLAUDE.md) for the conventions each app has to follow — mainly
+that all apps share one origin, so storage keys and cache names must be prefixed
+with the app's folder name.
 
-**5. Install it.** Tap the **Share** button (the square with the up arrow in the
-bottom toolbar) → scroll down → **Add to Home Screen** → **Add**.
-
-You now have a `Tasks` icon on your home screen. Open it from there, not from
-Safari — launched from the icon it runs full-screen as its own app.
-
-### Notes
-
-- The site is publicly reachable by anyone with the URL, but it holds no data:
-  your tasks live only in your phone's storage.
-- Deleting the home-screen icon also deletes the saved tasks.
-- Tasks do not sync between devices. One phone, one list.
-
-## Updating it later
-
-Push a change to the same branch and Pages redeploys in about a minute. Bump
-`CACHE` in `sw.js` whenever you edit `index.html`, `styles.css`, or `app.js` —
-otherwise phones keep serving the cached copy. After a deploy, open the app
-twice: the first launch downloads the update, the second shows it.
-
-## Running it locally
+## Running locally
 
 ```sh
 python3 -m http.server 8765
-# then open http://localhost:8765
+# open http://localhost:8765
 ```
 
-## Files
+## Notes
 
-| File | Purpose |
-| --- | --- |
-| `index.html` | Markup and the iOS/PWA meta tags |
-| `styles.css` | All styling, including dark mode and safe-area insets |
-| `app.js` | Task state, rendering, `localStorage` persistence |
-| `sw.js` | Service worker — offline caching |
-| `manifest.webmanifest` | App name, icons, standalone display mode |
-| `icons/` | Home-screen and manifest icons |
-| `.nojekyll` | Stops GitHub Pages from running the files through Jekyll |
+- Pages is free for public repos: 1 GB site, 100 GB/month bandwidth, 10
+  builds/hour ([limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits)).
+- The repo is public. **No secrets, ever** — anything committed is world-readable.
+- App data lives in the browser on a single device and does not sync. Deleting a
+  home-screen icon deletes that app's data.
