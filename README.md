@@ -8,6 +8,7 @@ to the iPhone home screen. No build step, no dependencies, no server.
 | App | What it is |
 | --- | --- |
 | [Tasks](https://rkrawec.github.io/claude-mobile/tasks/) | A bare-bones offline task tracker |
+| [Recipes](https://rkrawec.github.io/claude-mobile/recipes/) | Recipes you type in, with search and backup |
 
 ## Installing an app on your iPhone
 

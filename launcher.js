@@ -31,10 +31,22 @@ function card(app) {
   a.className = 'card';
   a.href = app.path;
 
-  const badge = document.createElement('span');
-  badge.className = 'badge';
-  badge.setAttribute('aria-hidden', 'true');
-  badge.textContent = app.emoji || '□';
+  // Show the app's real home-screen icon, so this list mirrors the home screen.
+  let badge;
+  if (app.icon) {
+    badge = document.createElement('img');
+    badge.className = 'badge';
+    badge.src = app.icon;
+    badge.alt = '';
+    badge.width = 44;
+    badge.height = 44;
+    badge.loading = 'lazy';
+  } else {
+    badge = document.createElement('span');
+    badge.className = 'badge badge-fallback';
+    badge.setAttribute('aria-hidden', 'true');
+    badge.textContent = app.emoji || '□';
+  }
 
   const text = document.createElement('span');
   text.className = 'card-text';
