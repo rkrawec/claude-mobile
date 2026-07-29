@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recipes</title>
+<meta name="description" content="Your own recipes, saved on your phone.">
+
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#f7f7f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Recipes">
+<link rel="apple-touch-icon" href="./icons/icon-180.png">
+<link rel="icon" href="./icons/icon-192.png">
+
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<!-- ============ list ============ -->
+<section id="view-list" class="view">
+  <header class="header">
+    <h1>Recipes</h1>
+    <p class="subtitle" id="count">No recipes yet</p>
+  </header>
+
+  <div class="bar">
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="Search"
+      aria-label="Search recipes"
+      autocomplete="off"
+      enterkeyhint="search">
+    <a class="btn btn-accent" href="#/new" aria-label="New recipe">New</a>
+  </div>
+
+  <ul class="cards" id="cards"></ul>
+  <p class="empty" id="list-empty" hidden></p>
+
+  <footer class="footer">
+    <button type="button" class="link" id="export">Copy backup</button>
+    <button type="button" class="link" id="import">Restore backup</button>
+  </footer>
+</section>
+
+<!-- ============ detail ============ -->
+<section id="view-detail" class="view" hidden>
+  <nav class="navbar">
+    <a class="link back" href="#/">&larr; Recipes</a>
+    <a class="link" id="detail-edit" href="#/">Edit</a>
+  </nav>
+
+  <article class="detail">
+    <h1 id="detail-title"></h1>
+    <p class="meta" id="detail-meta" hidden></p>
+
+    <section id="detail-ing-wrap">
+      <h2>Ingredients</h2>
+      <ul class="ingredients" id="detail-ingredients"></ul>
+    </section>
+
+    <section id="detail-steps-wrap">
+      <h2>Steps</h2>
+      <ol class="steps" id="detail-steps"></ol>
+    </section>
+
+    <button type="button" class="btn btn-danger" id="detail-delete">Delete recipe</button>
+  </article>
+</section>
+
+<!-- ============ editor ============ -->
+<section id="view-edit" class="view" hidden>
+  <nav class="navbar">
+    <button type="button" class="link back" id="edit-cancel">Cancel</button>
+    <span class="navtitle" id="edit-heading">New recipe</span>
+    <button type="submit" form="form" class="link strong">Save</button>
+  </nav>
+
+  <form class="form" id="form" autocomplete="off">
+    <label class="field">
+      <span class="label">Title</span>
+      <input id="f-title" type="text" maxlength="120" required placeholder="Banana bread">
+    </label>
+
+    <div class="row">
+      <label class="field">
+        <span class="label">Serves</span>
+        <input id="f-servings" type="text" maxlength="20" placeholder="4">
+      </label>
+      <label class="field">
+        <span class="label">Time</span>
+        <input id="f-time" type="text" maxlength="20" placeholder="45 min">
+      </label>
+    </div>
+
+    <label class="field">
+      <span class="label">Ingredients <em>one per line</em></span>
+      <textarea id="f-ingredients" rows="7" placeholder="2 ripe bananas&#10;150g flour&#10;1 tsp baking soda"></textarea>
+    </label>
+
+    <label class="field">
+      <span class="label">Steps <em>one per line</em></span>
+      <textarea id="f-steps" rows="8" placeholder="Heat oven to 180C.&#10;Mash the bananas.&#10;Mix everything and bake 45 min."></textarea>
+    </label>
+
+    <p class="error" id="form-error" hidden></p>
+  </form>
+</section>
+
+<script src="./app.js"></script>
+</body>
+</html>

@@ -3,6 +3,12 @@
     "name": "Tasks",
     "path": "./tasks/",
     "description": "A bare-bones offline task tracker.",
-    "emoji": "✓"
+    "icon": "./tasks/icons/icon-192.png"
+  },
+  {
+    "name": "Recipes",
+    "path": "./recipes/",
+    "description": "Your own recipes, saved on your phone.",
+    "icon": "./recipes/icons/icon-192.png"
   }
 ]

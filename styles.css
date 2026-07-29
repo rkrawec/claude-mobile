@@ -84,9 +84,14 @@ body {
   flex: none;
   width: 44px;
   height: 44px;
+  /* Matches the rounded-square mask iOS applies to home-screen icons. */
+  border-radius: 11px;
+  object-fit: cover;
+}
+
+.badge-fallback {
   display: grid;
   place-items: center;
-  border-radius: 11px;
   background: var(--accent);
   color: #fff;
   font-size: 22px;

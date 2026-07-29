@@ -50,7 +50,9 @@ about a minute.
 1. Create `/<slug>/` with its own `index.html`, `styles.css`, `app.js`,
    `sw.js`, `manifest.webmanifest`, and `icons/`. Copy `/tasks/` as the
    starting point — it has every iOS meta tag already correct.
-2. Add one entry to `/apps.json` so it shows up in the launcher.
+2. Add one entry to `/apps.json` so it shows up in the launcher — including
+   `icon`, pointing at the app's own 192px icon, so the launcher shows the same
+   tile the home screen does.
 3. Open a PR. The user merges from the GitHub mobile app.
 
 Do not add a build step, a framework, or an npm dependency. These are static
