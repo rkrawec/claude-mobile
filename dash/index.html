@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Dash</title>
+<meta name="description" content="One-tap jumping game. Do not hit the spikes.">
+
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0b1020">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dash">
+<link rel="apple-touch-icon" href="./icons/icon-180.png">
+<link rel="icon" href="./icons/icon-192.png">
+
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<div class="stage" id="stage">
+  <canvas id="game"></canvas>
+
+  <div class="hud" id="hud">
+    <span class="hud-item" id="hud-score">0 m</span>
+    <span class="hud-item" id="hud-best">Best 0 m</span>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <p class="attempt" id="ov-attempt" hidden></p>
+    <h1 class="ov-title" id="ov-title">Dash</h1>
+    <p class="ov-sub" id="ov-sub">Tap to start</p>
+    <p class="ov-hint" id="ov-hint">Tap anywhere to jump</p>
+  </div>
+</div>
+
+<script src="./app.js"></script>
+</body>
+</html>
