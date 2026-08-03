@@ -22,5 +22,11 @@
     "path": "./circus/",
     "description": "Survive the Ringmaster's adventures, a few seconds each.",
     "icon": "./circus/icons/icon-192.png"
+  },
+  {
+    "name": "Lantern",
+    "path": "./lantern/",
+    "description": "Drift a paper lantern up a canyon, from dusk to the stars.",
+    "icon": "./lantern/icons/icon-192.png"
   }
 ]
