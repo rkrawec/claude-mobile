@@ -16,5 +16,11 @@
     "path": "./dash/",
     "description": "One-tap jumping game. Do not hit the spikes.",
     "icon": "./dash/icons/icon-192.png"
+  },
+  {
+    "name": "Digital Circus",
+    "path": "./circus/",
+    "description": "Survive the Ringmaster's adventures, a few seconds each.",
+    "icon": "./circus/icons/icon-192.png"
   }
 ]
