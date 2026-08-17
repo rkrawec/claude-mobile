@@ -12,6 +12,12 @@
     "icon": "./recipes/icons/icon-192.png"
   },
   {
+    "name": "Gift Cards",
+    "path": "./cards/",
+    "description": "Track what is left on your gift cards.",
+    "icon": "./cards/icons/icon-192.png"
+  },
+  {
     "name": "Dash",
     "path": "./dash/",
     "description": "One-tap jumping game. Do not hit the spikes.",

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gift Cards</title>
+<meta name="description" content="Track what is left on your gift cards.">
+
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#f7f7f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Cards">
+<link rel="apple-touch-icon" href="./icons/icon-180.png">
+<link rel="icon" href="./icons/icon-192.png">
+
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<!-- ============ dashboard ============ -->
+<section id="view-list" class="view">
+  <header class="header">
+    <h1>Gift Cards</h1>
+    <p class="total" id="total">$0.00</p>
+    <p class="subtitle" id="subtitle">left across 0 cards</p>
+  </header>
+
+  <div class="bar">
+    <a class="btn btn-accent wide" href="#/new">Add a card</a>
+  </div>
+
+  <ul class="cards" id="cards"></ul>
+  <p class="empty" id="list-empty" hidden></p>
+
+  <footer class="footer">
+    <button type="button" class="link" id="export">Copy backup</button>
+    <button type="button" class="link" id="import">Restore backup</button>
+  </footer>
+</section>
+
+<!-- ============ card detail ============ -->
+<section id="view-detail" class="view" hidden>
+  <nav class="navbar">
+    <a class="link back" href="#/">&larr; Cards</a>
+    <a class="link" id="detail-edit" href="#/">Edit</a>
+  </nav>
+
+  <article class="detail">
+    <h1 id="detail-name"></h1>
+    <p class="detail-note" id="detail-note" hidden></p>
+
+    <p class="big" id="detail-balance"></p>
+    <p class="muted" id="detail-of"></p>
+
+    <div class="meter"><span class="meter-fill" id="detail-meter"></span></div>
+
+    <a class="btn btn-accent wide spend-cta" id="detail-spend" href="#/">Spend from this card</a>
+
+    <h2 id="history-heading">History</h2>
+    <ul class="history" id="detail-history"></ul>
+    <p class="muted" id="history-empty" hidden>Nothing spent yet.</p>
+
+    <button type="button" class="btn btn-danger" id="detail-delete">Delete card</button>
+  </article>
+</section>
+
+<!-- ============ spend ============ -->
+<section id="view-spend" class="view" hidden>
+  <nav class="navbar">
+    <button type="button" class="link back" id="spend-cancel">Cancel</button>
+    <span class="navtitle" id="spend-title">Spend</span>
+    <button type="submit" form="spend-form" class="link strong">Save</button>
+  </nav>
+
+  <form class="form" id="spend-form" autocomplete="off">
+    <p class="muted" id="spend-available"></p>
+
+    <label class="field">
+      <span class="label">Amount spent</span>
+      <input id="s-amount" type="text" inputmode="decimal" placeholder="0.00" maxlength="12">
+    </label>
+
+    <button type="button" class="link left" id="spend-all">Use the whole balance</button>
+
+    <label class="field">
+      <span class="label">Note <em>optional</em></span>
+      <input id="s-note" type="text" maxlength="60" placeholder="Coffee">
+    </label>
+
+    <p class="error" id="spend-error" hidden></p>
+  </form>
+</section>
+
+<!-- ============ add / edit card ============ -->
+<section id="view-edit" class="view" hidden>
+  <nav class="navbar">
+    <button type="button" class="link back" id="edit-cancel">Cancel</button>
+    <span class="navtitle" id="edit-heading">New card</span>
+    <button type="submit" form="card-form" class="link strong">Save</button>
+  </nav>
+
+  <form class="form" id="card-form" autocomplete="off">
+    <label class="field">
+      <span class="label">Where it&rsquo;s from</span>
+      <input id="f-name" type="text" maxlength="60" required placeholder="Target">
+    </label>
+
+    <label class="field">
+      <span class="label">Starting balance</span>
+      <input id="f-initial" type="text" inputmode="decimal" placeholder="25.00" maxlength="12">
+    </label>
+
+    <label class="field">
+      <span class="label">Note <em>optional</em></span>
+      <input id="f-note" type="text" maxlength="60" placeholder="Last 4: 1234">
+    </label>
+
+    <p class="hint" id="edit-hint" hidden></p>
+    <p class="error" id="form-error" hidden></p>
+  </form>
+</section>
+
+<script src="./app.js"></script>
+</body>
+</html>

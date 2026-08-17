@@ -9,6 +9,7 @@ to the iPhone home screen. No build step, no dependencies, no server.
 | --- | --- |
 | [Tasks](https://rkrawec.github.io/claude-mobile/tasks/) | A bare-bones offline task tracker |
 | [Recipes](https://rkrawec.github.io/claude-mobile/recipes/) | Recipes you type in, with search and backup |
+| [Gift Cards](https://rkrawec.github.io/claude-mobile/cards/) | What's left on each gift card, with spend history |
 | [Dash](https://rkrawec.github.io/claude-mobile/dash/) | One-tap jumping game, endless and offline |
 | [Digital Circus](https://rkrawec.github.io/claude-mobile/circus/) | Microgame gauntlet — nine adventures, a few seconds each |
 | [Lantern](https://rkrawec.github.io/claude-mobile/lantern/) | Steer a paper lantern up a canyon, dusk to starlight |
